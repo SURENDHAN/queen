@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>N-Queens Solutions</title>
+    <style>
+        .chessboard {
+            display: grid;
+            grid-template-columns: repeat({{ N }}, 50px);
+            grid-template-rows: repeat({{ N }}, 50px);
+            gap: 0;
+            margin-bottom: 20px;
+        }
+        .cell {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+        .white {
+            background-color: white;
+        }
+        .black {
+            background-color: black;
+            color: white;
+        }
+        .queen {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>N-Queens Solutions</h1>
+    <div id="solutions-container"></div>
+
+    <script>
+        const solutions = {{ solutions|safe }};
+        const N = {{ N }};
+        const cellColors = {{ cell_colors|safe }};
+
+        function createChessboard(solution) {
+            const chessboard = document.createElement('div');
+            chessboard.className = 'chessboard';
+
+            for (let row = 0; row < N; row++) {
+                for (let col = 0; col < N; col++) {
+                    const cell = document.createElement('div');
+                    cell.className = `cell ${cellColors[row][col]}`;
+                    if (solution[row] === col) {
+                        cell.innerHTML = '♛';
+                        cell.classList.add('queen');
+                    }
+                    chessboard.appendChild(cell);
+                }
+            }
+
+            return chessboard;
+        }
+
+        const solutionsContainer = document.getElementById('solutions-container');
+        solutions.forEach(solution => {
+            const chessboard = createChessboard(solution);
+            solutionsContainer.appendChild(chessboard);
+        });
+    </script>
+</body>
+</html>
