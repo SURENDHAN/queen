@@ -1,4 +1,6 @@
 ♔ N-Queens Solver ♛ (Django)
+
+
 This project is a Django-based web application that visualizes and solves the classic N-Queens problem—a fundamental combinatorial challenge in chess and algorithms. Users can input the value of N, and the system dynamically computes all valid board configurations where no two queens threaten each other. The solution is presented with an interactive chessboard visualization, making it both educational and engaging.
 
 ✨ Features:
